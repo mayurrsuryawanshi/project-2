@@ -1,0 +1,106 @@
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#')
+mycursor=mydb.cursor()
+mycursor.execute('create database books')
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#')
+mycursor=mydb.cursor()
+mycursor.execute('show databases')
+for x in mycursor:
+    print(x)
+
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#')
+mycursor=mydb.cursor()
+mycursor.execute('use books')
+for x in mycursor:
+    print(x)
+
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('create table book_details (book_name varchar(100), author_name varchar(100), book_description varchar(255), price float, in_stock int, primary_keyword varchar(10),secondary_keyword varchar(10), rating float)')
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('show tables')
+for x in mycursor:
+    print(x)
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+sql = 'insert into book_details values ("Thinking in Java", "Bruce Eckel", "Java programming basics", 3000, 5, "Java", "JVM", 4.5)'
+mycursor.execute(sql)
+mydb.commit()
+print(mycursor.rowcount,'record inserted')
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select book_name,author_name,rating from book_details')
+for x in mycursor:
+    print(x)
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select max(rating)from book_details')
+for x in mycursor:
+    print(x)
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select book_name from book_details where rating = (select max(rating)from book_details)')
+for x in mycursor:
+    print(x)
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select * from book_details where in_stock between 3 and 10')
+for x in mycursor:
+    print(x)
+
+import mysql.connector
+mydb = mysql.connector.connect(
+    host ='localhost',user='root',
+    password='Coolmyr2#',
+    database ='books')
+mycursor=mydb.cursor()
+mycursor.execute ('select avg(in_stock)from book_details')
+for x in mycursor:
+    print(x)
+
